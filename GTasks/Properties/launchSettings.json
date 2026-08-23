@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GTasks (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "GTasks (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
