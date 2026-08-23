@@ -41,6 +41,9 @@ public sealed partial class MainWindow : Window
     {
         InitializeComponent();
 
+        var iconPath = System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "AppIcon.ico");
+        AppWindow.SetTaskbarIcon(iconPath);
+
         if (Application.Current is App app &&
         Content is FrameworkElement root)
         {
@@ -69,7 +72,7 @@ public sealed partial class MainWindow : Window
         AppWindow.Changed += AppWindow_Changed;
         this.Closed += MainWindow_Closed;
         this.Activated += MainWindow_Activated;
-        
+
 
         CenterWindow();
 
@@ -399,7 +402,8 @@ public sealed partial class MainWindow : Window
         if (SettingsOverlay.Visibility == Visibility.Visible)
         {
             HideSettingsOverlay();
-        } else
+        }
+        else
         {
             SettingsOverlay.Visibility = Visibility.Visible;
             SettingsOverlay.Translation = Vector3.Zero;
@@ -653,13 +657,11 @@ public sealed partial class MainWindow : Window
     {
         if (sender is Button button)
         {
-            var rectangle = FindChildByName<Rectangle>(
-                button,
-                "ColorStrip");
+            var colorStrip = FindChildByName<Border>(button, "ColorStrip");
 
-            if (rectangle != null)
+            if (colorStrip != null)
             {
-                rectangle.Translation = new Vector3(-4, 0, 0);
+                colorStrip.Opacity = 0;
             }
         }
     }
@@ -668,13 +670,11 @@ public sealed partial class MainWindow : Window
     {
         if (sender is Button button)
         {
-            var rectangle = FindChildByName<Rectangle>(
-                button,
-                "ColorStrip");
+            var colorStrip = FindChildByName<Border>(button, "ColorStrip");
 
-            if (rectangle != null)
+            if (colorStrip != null)
             {
-                rectangle.Translation = new Vector3(0, 0, 0);
+                colorStrip.Opacity = 0.8f;
             }
         }
     }

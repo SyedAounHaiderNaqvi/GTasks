@@ -100,7 +100,7 @@
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Button PointerEntered="ListCollectionItem_PointerEntered" PointerExited="ListCollectionItem_PointerExited" HorizontalContentAlignment="Stretch" BorderThickness="0" Padding="0" Background="Transparent" HorizontalAlignment="Stretch" Tapped="PopOutList" Tag="{Binding}">
+                            <Button BorderBrush="{ThemeResource ControlElevationBorderBrush}" PointerEntered="ListCollectionItem_PointerEntered" PointerExited="ListCollectionItem_PointerExited" HorizontalContentAlignment="Stretch" BorderThickness="1" Padding="0" Background="Transparent" HorizontalAlignment="Stretch" Tapped="PopOutList" Tag="{Binding}">
                                 <Grid MinHeight="60">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -111,18 +111,26 @@
                                     </Grid.ColumnDefinitions>
 
                                     <!-- BACKPLATE -->
-                                    <Grid Grid.ColumnSpan="5" x:Name="Backplate" Opacity="0.3" Background="{ThemeResource SystemControlBackgroundBaseLowBrush}">
+                                    <Grid Grid.ColumnSpan="5" x:Name="Backplate" Background="{ThemeResource CollectionBackPlate}">
 
                                         <!-- TODO: Corner turn effect for open windows-->
                                         <!--<Path x:Name="Twirl" IsHitTestVisible="False" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="24" Height="24" Fill="{ThemeResource SystemControlBackgroundBaseLowBrush}" Data="M 10,10 L 24,10 L 10,24 Z"/>
                                         <Path x:Name="BackSide" IsHitTestVisible="False" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="14" Height="24" Fill="{ThemeResource SystemControlBackgroundAltMediumHighBrush}" Data="M 0,24 L 24,0 L 24,24 Z"/>-->
                                     </Grid>
 
-                                    <Rectangle x:Name="ColorStrip" Translation="-4,0,0" Grid.Column="0" Fill="{ThemeResource AccentFillColorDefaultBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="3" IsHitTestVisible="False">
+                                    <!--<Rectangle  Translation="-4,0,0" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="3" IsHitTestVisible="False">
                                         <Rectangle.TranslationTransition>
                                             <Vector3Transition Duration="0:0:0.2"/>
                                         </Rectangle.TranslationTransition>
-                                    </Rectangle>
+                                    </Rectangle>-->
+                                    
+                                    <!-- Colored Border -->
+                                    <Border Margin="-0.5" Opacity="0" CornerRadius="2" x:Name="ColorStrip" IsHitTestVisible="False" Grid.ColumnSpan="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderBrush="{ThemeResource AccentFillColorDefaultBrush}" BorderThickness="2">
+                                        <Border.OpacityTransition>
+                                            <ScalarTransition Duration="0:0:0.1"/>
+                                        </Border.OpacityTransition>
+                                        <Rectangle IsHitTestVisible="False" Opacity="0.1" Fill="{ThemeResource AccentFillColorDefaultBrush}"/>
+                                    </Border>
 
                                     <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Vertical">
                                         <TextBlock Margin="8" HorizontalAlignment="Center" MaxLines="3" ToolTipService.ToolTip="{Binding Title, Mode=OneWay}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" TextAlignment="Center" FontWeight="Bold" Text="{Binding Title, Mode=OneWay}"/>
@@ -160,9 +168,16 @@
                 <Vector3Transition Duration="0:0:0.2"/>
             </Grid.TranslationTransition>
             <StackPanel Orientation="Vertical" Spacing="16">
-                <TextBlock Text="Settings" FontWeight="ExtraBold" FontSize="20"/>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <Button Click="LaunchSettings" ToolTipService.ToolTip="Go Back" Padding="0" Background="Transparent" BorderThickness="0" Width="30" Height="30" VerticalAlignment="Center">
+                        <Button.Content>
+                            <FontIcon Glyph="&#xE72B;" FontSize="14"/>
+                        </Button.Content>
+                    </Button>
+                    <TextBlock VerticalAlignment="Center" Text="Settings" FontWeight="ExtraBold" FontSize="20"/>
+                </StackPanel>
 
-                <Grid  Padding="8,0,8,0" Height="60" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefault}" Background="{ThemeResource CardBackgroundFillColorDefault}" CornerRadius="{ThemeResource ControlCornerRadius}">
+                <Grid Visibility="Collapsed" Padding="8,0,8,0" Height="60" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefault}" Background="{ThemeResource CardBackgroundFillColorDefault}" CornerRadius="{ThemeResource ControlCornerRadius}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="*"/>
@@ -180,7 +195,8 @@
                     </ComboBox>
                 </Grid>
 
-                <Grid Margin="0,-10,0,0" Padding="8,0,8,0" Height="60" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefault}" Background="{ThemeResource CardBackgroundFillColorDefault}" CornerRadius="{ThemeResource ControlCornerRadius}">
+                <!--- Set margin of below to 0,-10,0,0 -->
+                <Grid Margin="0,0,0,0" Padding="8,0,8,0" Height="60" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefault}" Background="{ThemeResource CardBackgroundFillColorDefault}" CornerRadius="{ThemeResource ControlCornerRadius}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30"/>
                         <ColumnDefinition Width="0.75*"/>

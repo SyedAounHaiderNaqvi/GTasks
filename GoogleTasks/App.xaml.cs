@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
+using Microsoft.Windows.AppLifecycle;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,9 +17,6 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace GoogleTasks
 {
@@ -58,11 +56,14 @@ namespace GoogleTasks
         /// <param name="args">Details about the launch request and process.</param>
         protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            await LaunchApplicationAsync();
+            await LaunchApplicationAsync(args);
         }
 
-        private async Task LaunchApplicationAsync()
+        private async Task LaunchApplicationAsync(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            // If user didnt open anything prev session, then this session if app autostarts dont open any windows!
+            AppActivationArguments lifecycleArgs = Microsoft.Windows.AppLifecycle.AppInstance.GetCurrent().GetActivatedEventArgs();
+
             _window = new MainWindow();
 
             await _window.StartApplicationAsync();
@@ -79,10 +80,19 @@ namespace GoogleTasks
                 _window.OpenOrFocusSticky(listId);
             }
 
-            if (!state.HubOpen &&
-                state.OpenStickyListIds.Count == 0)
+            if (!state.HubOpen && state.OpenStickyListIds.Count == 0)
             {
-                _window.Activate();
+                if (lifecycleArgs.Kind == ExtendedActivationKind.Launch)
+                {
+                    // User launched, show window
+                    _window.Activate();
+                }
+                else
+                {
+                    // Close app now!
+                    _window.Close();
+                    Application.Current.Exit();
+                }
             }
         }
 

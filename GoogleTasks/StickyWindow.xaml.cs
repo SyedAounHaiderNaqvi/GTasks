@@ -44,6 +44,9 @@ public sealed partial class StickyWindow : Window
     {
         InitializeComponent();
 
+        var iconPath = System.IO.Path.Combine(AppContext.BaseDirectory, "Assets", "AppIcon.ico");
+        AppWindow.SetTaskbarIcon(iconPath);
+
         if (Application.Current is App app &&
         Content is FrameworkElement root)
         {
