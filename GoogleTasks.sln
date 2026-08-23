@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.9.12105.275 stable
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "GoogleTasks", "GoogleTasks\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AppX\GoogleTasks.exe", "{3051D433-2F58-A91D-0826-46C2A5CDC78A}"
+	ProjectSection(DebuggerProjectSystem) = preProject
+		PortSupplier = 00000000-0000-0000-0000-000000000000
+		Executable = C:\Users\Aoun\Documents\Visual Studio 2022\Projects\GoogleTasks\GoogleTasks\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AppX\GoogleTasks.exe
+		RemoteMachine = DESKTOP-40H2GRF
+		StartingDirectory = C:\Users\Aoun\Documents\Visual Studio 2022\Projects\GoogleTasks\GoogleTasks\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AppX
+		Environment = Default
+		LaunchingEngine = 00000000-0000-0000-0000-000000000000
+		UseLegacyDebugEngines = No
+		LaunchSQLEngine = No
+		AttachLaunchAction = No
+		IORedirection = Auto
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3051D433-2F58-A91D-0826-46C2A5CDC78A}.Release|x64.ActiveCfg = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB8158EF-B5D7-4E25-AA1C-93BD90A3C808}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GoogleTasks (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "GoogleTasks (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
